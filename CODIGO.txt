@@ -1,0 +1,83 @@
+// Definición de pines y variables
+
+const int Boton_Inicio_Paro = 2;
+const int Boton_Modo = 3;
+const int Boton_Reset = 4;
+const int Boton_Rotar = 5;
+const int Boton_Llenado = 6;
+const int Luz_trabajo = 7;
+const int Luz_Paro = 8;
+const int Luz_M1 = 9;
+const int Luz_M2 = 10;
+const int Bomba_Fill = 11;
+const int Rele_Motor = 12;
+const int led13 = 13;
+
+const int Sensor_Nivel = A0;
+const int Sensor_Pos = A1;
+
+void setup() {
+  pinMode(Rele_Motor, OUTPUT);
+  pinMode(Boton_Inicio_Paro, INPUT);
+  pinMode(Boton_Modo, INPUT);
+  pinMode(Boton_Reset, INPUT);
+  pinMode(Boton_Rotar, INPUT);
+  pinMode(Boton_Llenado, INPUT);
+  pinMode(Luz_trabajo, OUTPUT);
+  pinMode(Luz_Paro, OUTPUT);
+  pinMode(Luz_M1, OUTPUT);
+  pinMode(Luz_M2, OUTPUT);
+  pinMode(Bomba_Fill, OUTPUT);
+  pinMode(led13, OUTPUT);
+  digitalWrite(13, LOW);
+  Serial.begin(9600); // Inicializar el puerto serie a 9600 baudios
+}
+  
+void loop() {
+  // Verificar el estado de cada botón y cambiar el estado del LED correspondiente
+  if (digitalRead(Boton_Inicio_Paro) == HIGH) {
+    Serial.println("SE PRESIONÓ EL BOTÓN INICIO");
+    digitalWrite(Luz_trabajo, HIGH);
+    delay(2000);
+    digitalWrite(Luz_trabajo, LOW);
+  }
+  
+  if (digitalRead(Boton_Modo) == HIGH) {
+    Serial.println("SE PRESIONÓ EL BOTÓN MODO");
+    digitalWrite(Luz_Paro, HIGH);
+    delay(2000);
+    digitalWrite(Luz_Paro, LOW);
+  }
+
+  if (digitalRead(Boton_Reset) == HIGH) {
+    Serial.println("SE PRESIONÓ EL BOTÓN RESET");
+    digitalWrite(Luz_M1, HIGH);
+    delay(2000);
+    digitalWrite(Luz_M1, LOW);
+  }
+
+  if (digitalRead(Boton_Rotar) == HIGH) {
+    Serial.println("SE PRESIONÓ EL BOTÓN ROTAR");
+    digitalWrite(Luz_M2, HIGH);
+    delay(2000);
+    digitalWrite(Luz_M2, LOW);
+  }
+
+  if (digitalRead(Boton_Llenado) == HIGH) {
+    Serial.println("SE PRESIONÓ EL BOTÓN LLENADO");
+    digitalWrite(Bomba_Fill, HIGH);
+    delay(2000);
+    digitalWrite(Bomba_Fill, LOW);
+  }
+
+
+if (digitalRead(Sensor_Pos) == HIGH) {
+    Serial.println("SENSOR DE POSICION ACTIVO");
+    digitalWrite(Rele_Motor, HIGH);
+    delay(2000);
+    digitalWrite(Rele_Motor, LOW);
+  }
+
+
+
+}
